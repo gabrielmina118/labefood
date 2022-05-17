@@ -57,13 +57,14 @@ const SignUp = () =>{
     const signUpPerson = async() =>{
         await axios.post(`${BASE_URL}/signup`,form)
         .then((res)=>{
-            console.log(res.data)
             localStorage.setItem('token',res.data.token)
             alert(`boas vindas ${res.data.user.name}`)
             goToSignUpAdress(navigate)
         })
-        .then((err)=>{
-            console.log(err.response.data)
+        .catch((err)=>{
+            alert(err.response.data.message)    
+            clean()
+            setConfirmPassword('') 
         })
     } 
 

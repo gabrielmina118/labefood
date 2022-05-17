@@ -4,6 +4,10 @@ import { ButtonStyled, InputMaterial, Main, PassDiv } from "./styled"
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { IconButton } from "@mui/material";
+import axios from 'axios';
+import { BASE_URL } from '../../Constants/url';
+import { useNavigate } from 'react-router-dom';
+import { goToSignUpAdress } from '../../Routes/coordinator';
 
 const SignUp = () =>{
 
@@ -18,6 +22,9 @@ const SignUp = () =>{
     const [showPass, setShowPass] = useState(false)
     const [showCheckPass, setShowCheckPass] = useState(false)
     const [checkErrPass, setCheckErrPass] = useState(false)
+
+    const navigate = useNavigate()
+    
 
     const cpfMask = (value) => {
         return value
@@ -42,9 +49,25 @@ const SignUp = () =>{
             setCheckErrPass(true)
         }else{
             setCheckErrPass(false)
+            signUpPerson()
+          
         }
     }
 
+    const signUpPerson = async() =>{
+        await axios.post(`${BASE_URL}/signup`,form)
+        .then((res)=>{
+            console.log(res.data)
+            localStorage.setItem('token',res.data.token)
+            alert(`boas vindas ${res.data.user.name}`)
+            goToSignUpAdress(navigate)
+        })
+        .then((err)=>{
+            console.log(err.response.data)
+        })
+    } 
+
+    
     return(
         <Main>
             <p>Cadastrar</p>

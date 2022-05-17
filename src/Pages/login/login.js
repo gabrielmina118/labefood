@@ -5,6 +5,8 @@ import { IconButton } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { BASE_URL } from '../../Constants/url'
+import { useNavigate } from 'react-router-dom';
+import { goToFeed } from '../../Routes/coordinator';
 
 const Login = () => {
 
@@ -20,6 +22,8 @@ const Login = () => {
         setShowPassword(!showPassword)
     }
 
+    const navigate = useNavigate()
+
     const onSubmitLogin = (event) => {
         event.preventDefault()
 
@@ -33,14 +37,16 @@ const Login = () => {
     const loginApi = async (body) => {
         await axios.post(`${BASE_URL}/login`, body)
             .then((res) => {
-                console.log(res.data)
                 setEmail('')
                 setPassword('')
                 setErrEmail('')
                 setErrPass('')
                 setCheckErrEmail(false)
                 setCheckErrPass(false)
-
+                console.log(res.data)
+                localStorage.setItem('token',res.data.token)
+                alert(`boas vindas ${res.data.user.name}`)
+                goToFeed(navigate)
             })
             .catch((err) => {
                 if (err.response.data.message.includes('Senha incorreta')) {

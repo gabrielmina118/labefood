@@ -13,3 +13,15 @@ export const goToSignUp = (navigate)=>{
 export const goToSignUpAdress = (navigate)=>{
     navigate('/signUp/adress')
 }
+
+export const goToProfile = (navigate) =>{
+    navigate('/profile')
+}
+
+export const goToAdressEdit = (navigate,id)=>{
+    navigate(`/adressEdit/${id}`)
+}
+
+export const goToProfileEdit = (navigate,id)=>{
+    navigate(`/profile/${id}`)
+}

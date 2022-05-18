@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react'
 import CardRestaurant from '../../Components/CardRestaurant/CardRestaurant'
 import Header from '../../Components/Header/Header'
 import { BASE_URL } from '../../Constants/url'
+import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import { CardsRestaurant, ContainerFeed, InputSearch } from './styled'
 
 const Feed = () => {
+    useProtectedPage()
     const [restaurants, setRestaurants] = useState([])
     const getRestaurants = () => {
         axios.get(`${BASE_URL}/restaurants`, {

@@ -1,7 +1,7 @@
 import { ContainerHeader, Title } from "./styled"
 
 const Header = ({title}) => {
-    
+
     return <ContainerHeader>
         <Title>{title}</Title>
     </ContainerHeader>

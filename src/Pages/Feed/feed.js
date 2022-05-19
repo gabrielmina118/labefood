@@ -1,22 +1,22 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { BASE_URL } from '../../Constants/url'
+import { BoxInputSearch, CardsRestaurant, ContainerFeed, InputSearch, Menu, MenuItem } from './styled'
 import CardRestaurant from '../../Components/CardRestaurant/CardRestaurant'
 import Header from '../../Components/Header/Header'
-import { BASE_URL } from '../../Constants/url'
-import { useProtectedPage } from '../../Hooks/useProtectedPage'
-import { CardsRestaurant, ContainerFeed, InputSearch } from './styled'
 
 const Feed = () => {
-    useProtectedPage()
     const [restaurants, setRestaurants] = useState([])
     const getRestaurants = () => {
-        axios.get(`${BASE_URL}/restaurants`, {
-            headers: {
-                auth: localStorage.getItem("token")
-            }
-        })
+        axios
+            .get(`${BASE_URL}/restaurants`,
+                {
+                    headers: {
+                        auth: window.localStorage.getItem("token")
+                    }
+                })
             .then((res) => {
-                console.log(res.data)
+                console.log(res)
                 setRestaurants(res.data.restaurants)
             })
             .catch((err) => {
@@ -28,17 +28,25 @@ const Feed = () => {
     }, [])
     return (
         <ContainerFeed>
-            <Header title={"Ifuture"}/>
-             <CardsRestaurant>
-            <InputSearch/>
+            <Header title={"Ifuture"} />
+            <BoxInputSearch>
+                <InputSearch />
+            </BoxInputSearch>
+            <Menu>
+                <MenuItem select={true}>Burger</MenuItem>
+                <MenuItem select={false}>Asiática</MenuItem>
+                <MenuItem select={false}>Massas</MenuItem>
+                <MenuItem select={false}>Saudável</MenuItem>
+                <MenuItem select={false}>Saudável</MenuItem>
+                <MenuItem select={false}>Saudável</MenuItem>
+            </Menu>
+            <CardsRestaurant>
                 {
-                    restaurants.map((restaurant)=>{
-                        return <CardRestaurant
-                        restaurant={restaurant}
-                        />
+                    restaurants.map((restaurant) => {
+                        return <CardRestaurant restaurant={restaurant} />
                     })
                 }
-            </CardsRestaurant> 
+            </CardsRestaurant>
         </ContainerFeed>
     )
 }

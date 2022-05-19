@@ -1,6 +1,7 @@
-import styled from "styled-components";
 
-export const ContainerCardRestaurant = styled.div`
+import styled from "styled-components"
+
+export const ContainerCardRestaurants = styled.div`
     width: 100%;
     border: 1px solid black;
     margin: 0.5rem 0;
@@ -18,10 +19,12 @@ export const NameRestaurant = styled.h3`
     line-height: normal;
     letter-spacing: -0.39px;
     color: red;
+    padding: 1rem 1rem 0 1rem;
 `
 export const BoxInformTimePrice = styled.div`
     display: flex;
     justify-content: space-between;
+    padding: 0 1rem 1rem 1rem;
 `
 export const InformTimePrice = styled.p`
     font-family: Roboto;

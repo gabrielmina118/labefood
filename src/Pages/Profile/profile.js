@@ -40,7 +40,7 @@ const Profile = () => {
                         <p>Histórico de pedidos</p>
                     </MainHistory>
                     <OrderHistory>
-                        {order[0].orders && order[0].orders.map((order)=>{
+                        {order[0].orders && order[0].orders.length >0 ?  order[0].orders && order[0].orders.map((order)=>{
                             console.log(order)
                            return(
                             <CardOrderHistory 
@@ -49,7 +49,7 @@ const Profile = () => {
                             createdAt={order.createdAt}
                             />
                            )      
-                        })}
+                        }):<p>Voce nao realizou nenhum pedido.</p>}
                     </OrderHistory>
                 </HistoricoCompras>
             </Informacoes>

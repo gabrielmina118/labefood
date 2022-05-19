@@ -13,3 +13,5 @@ const CardRestaurant = ({ restaurant }) => {
         </ContainerCardRestaurants>
     </>
 }
+
+export default CardRestaurant

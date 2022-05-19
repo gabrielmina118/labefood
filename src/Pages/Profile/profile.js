@@ -12,6 +12,7 @@ const Profile = () => {
     useProtectedPage()
 
     const person = useRequestData({}, `${BASE_URL}/profile`)
+    const order = useRequestData([],`${BASE_URL}/orders/history`)
 
     const navigate = useNavigate()
 
@@ -39,10 +40,16 @@ const Profile = () => {
                         <p>Histórico de pedidos</p>
                     </MainHistory>
                     <OrderHistory>
-                        <CardOrderHistory />
-                        <CardOrderHistory />
-                        <CardOrderHistory />
-                        
+                        {order[0].orders && order[0].orders.map((order)=>{
+                            console.log(order)
+                           return(
+                            <CardOrderHistory 
+                            restaurantName={order.restaurantName}
+                            totalPrice={order.totalPrice}
+                            createdAt={order.createdAt}
+                            />
+                           )      
+                        })}
                     </OrderHistory>
                 </HistoricoCompras>
             </Informacoes>

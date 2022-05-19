@@ -58,5 +58,19 @@ export const EnderecoPessoa =styled.div`
     }
 `
 export const HistoricoCompras =styled.div`
-    height: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+`
+export const MainHistory = styled.div`
+        height: 10%;
+        margin-bottom: 10px;
+`
+export const OrderHistory = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 `

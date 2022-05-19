@@ -42,3 +42,4 @@ export const MenuItem = styled.button`
     padding: 0 1rem;
     background: transparent;
   `
+

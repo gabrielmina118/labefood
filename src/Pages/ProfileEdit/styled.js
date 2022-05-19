@@ -1,5 +1,5 @@
-import { Button, TextField } from '@mui/material'
 import styled from 'styled-components'
+import { Button, TextField } from '@mui/material'
 
 export const Main = styled.div`
     padding: 10px;
@@ -7,6 +7,7 @@ export const Main = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     form{
         margin-top: 50px;
         display: flex;
@@ -19,9 +20,6 @@ export const Main = styled.div`
         font-size: 2rem;
     }
 `
-export const InputMaterial = styled(TextField)`
-    width: 100%;
-`
 export const ButtonStyled = styled(Button)`
     &&{
         color: #000;
@@ -30,4 +28,16 @@ export const ButtonStyled = styled(Button)`
         margin-top: 5px;
     }
     
+`
+export const PassDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        font-size: 1rem;
+    }
+
+`
+export const InputMaterial = styled(TextField)`
+    width: 100%;
 `

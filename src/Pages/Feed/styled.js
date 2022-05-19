@@ -10,7 +10,6 @@ export const BoxInputSearch = styled.div`
     padding: 0 1rem;      
     margin-top : 0.5rem ;
 `
-
 export const InputSearch = styled.input`
     width: 100%;
     height: 3.5rem;
@@ -42,5 +41,4 @@ export const MenuItem = styled.button`
     outline: none;
     padding: 0 1rem;
     background: transparent;
-    
-`
+  

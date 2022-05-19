@@ -7,8 +7,8 @@ import { GlobalStyled } from "./GlobalStyled";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyled />
-      <Router />
+      <GlobalStyled/>
+      <Router/>
     </ThemeProvider>
   );
 }

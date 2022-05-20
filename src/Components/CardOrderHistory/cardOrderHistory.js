@@ -13,6 +13,9 @@ const Main = styled.div`
     border-radius:30%;
     font-size: 2rem;
     padding:10px;
+    p:nth-child(1){
+        color: red;
+    }
 `
 
 const convertDate = (timeStamp)=>{

@@ -127,8 +127,8 @@ const SignUp = () =>{
                 </PassDiv>
                 <PassDiv>
                     <InputMaterial
-                         error={checkErrPass}
-                         helperText={checkErrPass ? 'Deve ser a mesma que a anterior.' : ''}
+                        error={checkErrPass}
+                        helperText={checkErrPass ? 'Deve ser a mesma que a anterior.' : ''}
                         id="outlined-adornment-password"
                         label={'Confirmar'}
                         type={showCheckPass ? 'text' : 'password'}

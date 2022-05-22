@@ -8,8 +8,9 @@ export const goToFeed = (navigate) => {
 export const goToRestaurant = (navigate, id) => {
     navigate(`/feed/${id}`)
 }
-
-
+export const goToBack = (navigate) => {
+    navigate(-1)
+}
 export const goToSignUp = (navigate) => {
     navigate('/signUp')
 }

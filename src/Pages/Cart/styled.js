@@ -4,6 +4,7 @@ export const Main = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin-bottom: 4.062rem;
 `
 export const MainCart = styled.div`
     display: flex;

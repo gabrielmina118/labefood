@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const ContainerFeed = styled.div`
+    padding:  0 0 3rem 0;
 `
 export const CardsRestaurant = styled.div`
     padding: 0 1rem;      

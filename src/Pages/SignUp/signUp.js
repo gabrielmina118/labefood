@@ -8,6 +8,7 @@ import axios from 'axios';
 import { BASE_URL } from '../../Constants/url';
 import { useNavigate } from 'react-router-dom';
 import { goToSignUpAdress } from '../../Routes/coordinator';
+import Header from '../../Components/Header/Header';
 
 const SignUp = () =>{
 
@@ -71,7 +72,7 @@ const SignUp = () =>{
     
     return(
         <Main>
-            <p>Cadastrar</p>
+            <Header title={"Cadastrar"}/>
             <form onSubmit={onSubmitForm}>
                 <InputMaterial
                     id="outlined-basic"

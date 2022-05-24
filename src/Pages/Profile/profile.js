@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import CardOrderHistory from '../../Components/CardOrderHistory/cardOrderHistory'
+import Header from '../../Components/Header/Header'
+import Menu from '../../Components/Menu/Menu'
 import { BASE_URL } from '../../Constants/url'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import { useRequestData } from '../../Hooks/useRequestData'
@@ -18,7 +20,8 @@ const Profile = () => {
 
     return (
         <Main>
-            <Perfil>Meu Perfil</Perfil>
+        <Menu pageCurrent={"profile"} />
+           <Header title={"Meu Perfil"}/>
             <Informacoes>
                 <PerfilPessoa>
                     <div>

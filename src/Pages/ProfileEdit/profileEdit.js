@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Header from "../../Components/Header/Header"
 import { BASE_URL } from "../../Constants/url"
 import { useRequestData } from "../../Hooks/useRequestData"
 import { goToProfile } from "../../Routes/coordinator"
@@ -15,7 +16,7 @@ const ProfileEdit = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [cpf, setCpf] = useState('')
-    
+
     const navigate = useNavigate()
 
     const getPerson = async () => {
@@ -82,7 +83,7 @@ const ProfileEdit = () => {
 
     return (
         <Main>
-            <p>Editar</p>
+            <Header title={"Editar"} back />
             <form onSubmit={onSubmitForm}>
                 <InputMaterial
                     id="outlined-basic"

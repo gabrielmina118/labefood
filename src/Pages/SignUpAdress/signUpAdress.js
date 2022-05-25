@@ -3,10 +3,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../Constants/url'
 import { useForm } from '../../Hooks/useForm'
+import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import { goToFeed } from '../../Routes/coordinator'
 import { ButtonStyled, InputMaterial, Main } from './styled'
 
 const SignUpAdress = () => {
+    useProtectedPage()
 
     const { form, onChange, clean } = useForm({
         "street": "",

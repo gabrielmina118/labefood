@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Main, Form, ButtonStyled, DivPassword, InputMaterial } from './styled'
 import axios from 'axios'
-import { IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { BASE_URL } from '../../Constants/url'
 import { useNavigate } from 'react-router-dom';
-import { goToFeed } from '../../Routes/coordinator';
+import { goToFeed, goToSignUp } from '../../Routes/coordinator';
 
 const Login = () => {
 
@@ -101,6 +101,7 @@ const Login = () => {
                 </DivPassword>
                 <ButtonStyled type='submit'>Entrar</ButtonStyled>
             </Form>
+            <Button onClick={()=>goToSignUp(navigate)}>Não possui cadastro - clique aqui</Button>
         </Main>
     )
 }

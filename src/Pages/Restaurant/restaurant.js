@@ -6,8 +6,10 @@ import CardRestaurantDetails from '../../Components/CardRestaurantDetails/CardRe
 import Header from '../../Components/Header/Header'
 import { BASE_URL } from '../../Constants/url'
 import { useGlobal } from '../../Context/Global/GlobalStateContext'
+import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import { CardRestaurant, Category, ContainerRestaurant, SectionProductByCategory } from './styled'
 const Restaurant = () => {
+    useProtectedPage()
     const { restaurantId } = useParams()
     const [restaurant, setRestaurant] = useState({})
     const [categories, setCategories] = useState([])

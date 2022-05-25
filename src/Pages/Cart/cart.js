@@ -21,9 +21,11 @@ import Menu from '../../Components/Menu/Menu'
 import Header from '../../Components/Header/Header'
 import { useGlobal } from '../../Context/Global/GlobalStateContext'
 import CardProduct from '../../Components/CardProduct/CardProdut'
+import { useProtectedPage } from '../../Hooks/useProtectedPage'
 
 const Cart = () => {
 
+    useProtectedPage()
     const profile = useRequestData({}, `${BASE_URL}/profile`)
     const [payment, setPayment] = useState('')
     const [fullPrice, setFullPrice] = useState(0)

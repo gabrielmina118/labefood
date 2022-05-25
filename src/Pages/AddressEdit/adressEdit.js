@@ -6,9 +6,9 @@ import { BASE_URL } from '../../Constants/url'
 import { useForm } from '../../Hooks/useForm'
 import { goToProfile } from '../../Routes/coordinator'
 import { ButtonStyled, InputMaterial, Main } from './styled'
-
+import {useProtectedPage} from '../../Hooks/useProtectedPage'
 const AdressEdit = () => {
-
+    useProtectedPage()
 
     const { form, onChange, clean, setForm } = useForm({
         "street": "",

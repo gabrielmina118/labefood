@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Header from "../../Components/Header/Header"
 import { BASE_URL } from "../../Constants/url"
+import { useProtectedPage } from "../../Hooks/useProtectedPage"
 import { useRequestData } from "../../Hooks/useRequestData"
 import { goToProfile } from "../../Routes/coordinator"
 import { ButtonStyled, InputMaterial, Main, PassDiv } from "./styled"
 
 
 const ProfileEdit = () => {
-
+    useProtectedPage()
 
     const person = useRequestData({}, `${BASE_URL}/profile`)
 

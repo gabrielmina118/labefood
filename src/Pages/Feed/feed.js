@@ -7,9 +7,19 @@ import Header from '../../Components/Header/Header'
 import MenuChangePage from '../../Components/Menu/Menu'
 import { useGlobal } from '../../Context/Global/GlobalStateContext'
 import PlaceCurrent from '../../Components/PlaceCurrent/PlaceCurrent'
+import { useProtectedPage } from '../../Hooks/useProtectedPage'
 const Feed = () => {
+
+    useProtectedPage()
+
     const [restaurants, setRestaurants] = useState([])
+    const [categoryRestaurant, setCategoryRestaurant] = useState([])
+    const [valueCategory, setValueCategory] = useState('')
     const { setters, states } = useGlobal()
+
+    const [inputText, setInputText] = useState('')
+
+
     const getRestaurants = () => {
         axios
             .get(`${BASE_URL}/restaurants`,
@@ -20,11 +30,22 @@ const Feed = () => {
                 })
             .then((res) => {
                 setRestaurants(res.data.restaurants)
+                filterCategory(res.data.restaurants)
             })
             .catch((err) => {
                 console.log(err)
             })
     }
+
+    const filterCategory = (restaurants) => {
+        const arrayAux = []
+        restaurants.map((res) => {
+            arrayAux.push(res.category)
+        })
+        const takeOutRepeat = [...new Set(arrayAux)]
+        setCategoryRestaurant(takeOutRepeat)
+    }
+
     const getActiveOrder = () => {
         axios.get(`${BASE_URL}/active-order`,
             {
@@ -49,26 +70,54 @@ const Feed = () => {
         getRestaurants()
         getActiveOrder()
     }, [])
-    console.log(states.order)
+
+
+    const filterRestaurant = restaurants
+        .filter((restaurant) =>
+            inputText ? restaurant.name.toLowerCase().includes(inputText.toLowerCase()) : true
+        )
+        .filter((restaurant) =>
+            valueCategory ? restaurant.category.toLowerCase().includes(valueCategory.toLowerCase()) : true
+        )
+        .map((restaurant) => {
+            return <CardRestaurant restaurant={restaurant} />
+        })
+
+  
+
     return (
+
         <ContainerFeed>
+
             <Header title={"Ifuture"} />
             <BoxInputSearch>
-                <InputSearch />
+                <InputSearch
+                    value={inputText}
+                    onChange={(event) => setInputText(event.target.value)}
+                />
             </BoxInputSearch>
             <Menu>
-                <MenuItem select={true}>Burger</MenuItem>
-                <MenuItem select={false}>Asiática</MenuItem>
-                <MenuItem select={false}>Massas</MenuItem>
-                <MenuItem select={false}>Saudável</MenuItem>
-                <MenuItem select={false}>Saudável</MenuItem>
-                <MenuItem select={false}>Saudável</MenuItem>
+                <MenuItem
+
+                    onClick={() => setValueCategory('')}
+                >
+                    Todos
+                </MenuItem>
+                {categoryRestaurant.map((category) => {
+                    return (
+                        <MenuItem
+                            select={false}
+                            onClick={() => setValueCategory(category)}
+                        >
+                            {category}
+                        </MenuItem>
+                    )
+                })}
+
             </Menu>
             <CardsRestaurant>
                 {
-                    restaurants.map((restaurant) => {
-                        return <CardRestaurant restaurant={restaurant} />
-                    })
+                    filterRestaurant
                 }
             </CardsRestaurant>
             {

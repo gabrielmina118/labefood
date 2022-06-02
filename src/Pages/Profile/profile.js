@@ -6,22 +6,32 @@ import Menu from '../../Components/Menu/Menu'
 import { BASE_URL } from '../../Constants/url'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import { useRequestData } from '../../Hooks/useRequestData'
-import { goToProfileEdit, goToAdressEdit } from '../../Routes/coordinator'
-import { Main, Perfil, Informacoes, PerfilPessoa, EnderecoPessoa, HistoricoCompras, OrderHistory, MainHistory } from './styled'
-
+import { goToProfileEdit, goToAdressEdit, goToLogin } from '../../Routes/coordinator'
+import { Main, Perfil, Informacoes, PerfilPessoa, EnderecoPessoa, HistoricoCompras, OrderHistory, MainHistory, LogOutDiv } from './styled'
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Profile = () => {
     useProtectedPage()
 
     const person = useRequestData({}, `${BASE_URL}/profile`)
-    const order = useRequestData([],`${BASE_URL}/orders/history`)
+    const order = useRequestData([], `${BASE_URL}/orders/history`)
 
     const navigate = useNavigate()
 
+
+    const logOut = ()=>{
+        window.localStorage.removeItem('token')
+        goToLogin(navigate)
+    }
+  
+
     return (
         <Main>
-        <Menu pageCurrent={"profile"} />
-           <Header title={"Meu Perfil"}/>
+            <Menu pageCurrent={"profile"} />
+            <Header title={"Meu Perfil"} />
+            <LogOutDiv onClick={()=>logOut()}>
+                <LogoutIcon />
+            </LogOutDiv>
             <Informacoes>
                 <PerfilPessoa>
                     <div>
@@ -43,16 +53,16 @@ const Profile = () => {
                         <p>Histórico de pedidos</p>
                     </MainHistory>
                     <OrderHistory>
-                        {order[0].orders && order[0].orders.length >0 ?  order[0].orders && order[0].orders.map((order)=>{
+                        {order[0].orders && order[0].orders.length > 0 ? order[0].orders && order[0].orders.map((order) => {
                             console.log(order)
-                           return(
-                            <CardOrderHistory 
-                            restaurantName={order.restaurantName}
-                            totalPrice={order.totalPrice}
-                            createdAt={order.createdAt}
-                            />
-                           )      
-                        }):<p>Voce nao realizou nenhum pedido.</p>}
+                            return (
+                                <CardOrderHistory
+                                    restaurantName={order.restaurantName}
+                                    totalPrice={order.totalPrice}
+                                    createdAt={order.createdAt}
+                                />
+                            )
+                        }) : <p>Voce nao realizou nenhum pedido.</p>}
                     </OrderHistory>
                 </HistoricoCompras>
             </Informacoes>

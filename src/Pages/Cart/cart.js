@@ -22,6 +22,8 @@ import Header from '../../Components/Header/Header'
 import { useGlobal } from '../../Context/Global/GlobalStateContext'
 import CardProduct from '../../Components/CardProduct/CardProdut'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
+import { useNavigate } from 'react-router-dom'
+import { goToFeed } from '../../Routes/coordinator'
 
 const Cart = () => {
 
@@ -37,16 +39,15 @@ const Cart = () => {
     ])
 
 
+    const navigate = useNavigate()
+
 
     const totalPrice = () => {
         let totPrice = 0;
         for (const product of cart) {
             totPrice += product.price * product.quantity
         }
-        console.log(cart)
         setFullPrice(totPrice)
-
-
     }
 
     useEffect(() => {
@@ -72,6 +73,8 @@ const Cart = () => {
         })
             .then((res) => {
                 setters.setOrder(res.data.order)
+                setters.setCart([])
+                goToFeed(navigate)
             })
             .catch((err) => {
                 console.log(err.response)

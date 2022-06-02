@@ -43,7 +43,15 @@ const Feed = () => {
             arrayAux.push(res.category)
         })
         const takeOutRepeat = [...new Set(arrayAux)]
-        setCategoryRestaurant(takeOutRepeat)
+       
+        const changeObjectArray = []
+
+        takeOutRepeat.map((category)=>{
+            const insertObj = {category,select:false}
+            changeObjectArray.push(insertObj)
+        })
+ 
+        setCategoryRestaurant(changeObjectArray)
     }
 
     const getActiveOrder = () => {
@@ -63,7 +71,7 @@ const Feed = () => {
                 }, res.data.order.expiresAt - timeCurrent)
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.response.data.message)
             })
     }
     useEffect(() => {
@@ -83,7 +91,24 @@ const Feed = () => {
             return <CardRestaurant restaurant={restaurant} />
         })
 
-  
+        const changeCategory = (category)=>{
+            setValueCategory(category)
+            
+            const result = categoryRestaurant.map((cat)=>{
+                if(cat.category === category){
+                    return{
+                        ...cat,
+                        select:true
+                    }
+                }else{
+                    return{
+                        ...cat,
+                        select:false
+                    } 
+                }
+            })
+            setCategoryRestaurant(result);
+        }
 
     return (
 
@@ -99,17 +124,17 @@ const Feed = () => {
             <Menu>
                 <MenuItem
 
-                    onClick={() => setValueCategory('')}
+                    onClick={() => changeCategory('')}
                 >
                     Todos
                 </MenuItem>
                 {categoryRestaurant.map((category) => {
                     return (
                         <MenuItem
-                            select={false}
-                            onClick={() => setValueCategory(category)}
+                            select={category.select}
+                            onClick={() => changeCategory(category.category)}
                         >
-                            {category}
+                            {category.category}
                         </MenuItem>
                     )
                 })}

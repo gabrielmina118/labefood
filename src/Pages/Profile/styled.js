@@ -74,3 +74,9 @@ export const OrderHistory = styled.div`
     justify-content: flex-start;
     align-items: center;
 `
+
+export const LogOutDiv = styled.div`
+    display: flex;
+    justify-content: start;
+    margin-bottom: 10px;
+`
